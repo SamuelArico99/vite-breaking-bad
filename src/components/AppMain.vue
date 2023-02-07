@@ -1,11 +1,23 @@
 <script>
 
+import CharacterCard from './CharacterCard.vue'
 import SearchForm from './SearchForm.vue';
 
 export default {
     name: 'AppMain',
+    props: {
+        charactersList: {
+            type: Array,
+            default: []
+        },
+        charactersCount: {
+            type: Number,
+            default: 0
+        }
+    },
     components: {
-        SearchForm
+        SearchForm,
+        CharacterCard
     }
 }
 
@@ -17,19 +29,12 @@ export default {
         <div class="container">
             <div class="my-row d-flex align-items-center">
                 <h3>
-                    Found 39 cards
+                    Found {{ charactersCount }} cards
                 </h3>
             </div>
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
-                <div class="col" v-for="i in 40">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="">
-                        <div>
-                            <strong>Character Name</strong><br>
-                            <span>Character Species</span>
-                        </div>
-                    </div>
-
+                <div class="col" v-for="character in charactersList">
+                    <CharacterCard :character="character" />
                 </div>
             </div>
         </div>
@@ -59,6 +64,6 @@ main {
 .card {
     background-color: $primary-color;
     border-radius: 0px;
-    margin: 10px 0px;
+    margin-bottom: 10px;
 }
 </style>
