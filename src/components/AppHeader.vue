@@ -31,5 +31,9 @@ img {
 
 header {
     background-color: $secondary-color;
+
+    .container {
+        margin: 0;
+    }
 }
 </style>
