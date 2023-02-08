@@ -1,19 +1,30 @@
 <script>
-
+import axios from 'axios';
+import { store } from "../store";
 import CharacterCard from './CharacterCard.vue'
 import SearchForm from './SearchForm.vue';
 
+
 export default {
     name: 'AppMain',
-    props: {
-        charactersList: {
-            type: Array,
-            default: []
-        },
-        charactersCount: {
-            type: Number,
-            default: 0
+    data() {
+        return {
+            store
         }
+    },
+    methods: {
+        getArchetype() {
+            console.log('ciao');
+            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=' + this.store.statusValue)
+                .then((response) => {
+                    console.log(response.data.data.slice(0, 40));
+                    this.store.results = response.data.data.slice(0, 40)
+                });
+
+        }
+    },
+    created() {
+        this.getArchetype();
     },
     components: {
         SearchForm,
@@ -25,15 +36,15 @@ export default {
 
 <template>
     <main>
-        <SearchForm />
+        <SearchForm @search="getArchetype" />
         <div class="container">
             <div class="my-row d-flex align-items-center">
                 <h3>
-                    Found {{ charactersCount }} cards
+                    Found {{ store.results.length }} cards
                 </h3>
             </div>
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
-                <div class="col" v-for="character in charactersList">
+                <div class="col" v-for="character in store.results">
                     <CharacterCard :character="character" />
                 </div>
             </div>

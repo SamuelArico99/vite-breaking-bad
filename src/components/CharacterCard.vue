@@ -20,19 +20,14 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-img {
-    width: 100%;
-    height: 225px;
-}
-
 .card {
-    min-height: 300px;
-    max-height: 300px;
+    min-height: 250px;
 }
 
 .text-information {
     padding: 5px;
     text-align: center;
+    font-size: 12px;
 
     strong {
         color: $secondary-color;

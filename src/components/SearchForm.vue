@@ -1,20 +1,32 @@
 <script>
 
+import { store } from "../store";
+
 export default {
-    name: 'SearchForm'
+    name: 'SearchForm',
+    data() {
+        return {
+            store
+        }
+    }
 }
 
 </script>
 
 <template>
-    <div class="my-container">
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-    </div>
+
+    <h1 class="mt-2">Select an Archetype</h1>
+    <form action="">
+        <div class="my-container">
+            <select v-model="store.statusValue" @change="$emit('search')" class="form-select form-select-sm"
+                aria-label="Select status">
+                <option selected value="">Select Archetype</option>
+                <option value="alien">Alien</option>
+                <option value="Ancient%20Gear">Ancient Gear</option>
+                <option value="ABC">ABC</option>
+            </select>
+        </div>
+    </form>
 </template>
 
 <style lang="scss" scoped>
@@ -22,12 +34,16 @@ export default {
     padding: 0;
     margin-left: 0;
     padding-left: 60px;
-    margin-bottom: 40px;
+    margin: 40px 0px;
     background-color: $primary-color;
 }
 
 select {
     max-width: 20%;
     min-width: 200px;
+}
+
+h1 {
+    color: $secondary-color;
 }
 </style>
