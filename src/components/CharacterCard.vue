@@ -11,8 +11,8 @@ export default {
 
 <template>
     <div class="card">
-        <img :src="character.card_images.image_url" class="img-fluid" alt="">
-        <div>
+        <img :src="character.card_images[0].image_url" class="img-fluid" alt="">
+        <div class="text-information">
             <strong>{{ character.name }}</strong><br>
             <span>{{ character.archetype }}</span>
         </div>
@@ -22,6 +22,20 @@ export default {
 <style lang="scss" scoped>
 img {
     width: 100%;
-    height: 150px;
+    height: 225px;
+}
+
+.card {
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.text-information {
+    padding: 5px;
+    text-align: center;
+
+    strong {
+        color: $secondary-color;
+    }
 }
 </style>

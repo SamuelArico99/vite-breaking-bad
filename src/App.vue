@@ -27,7 +27,7 @@ export default {
 
   <AppHeader />
 
-  <AppMain :charactersList=characters :charactersCount="characters.length" />
+  <AppMain :charactersList=characters :charactersCount=characters.length />
 
 </template>
 
